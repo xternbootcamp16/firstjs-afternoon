@@ -1,31 +1,37 @@
 $(document).foundation();
 
-(function() {
-  var buildColorDiv = function(color) {
-    return '<div style="height: 100px; width: 100px; background-color: ' + color + '"></div>';
-  };
+var app = {
 
-  var buildList = function(listValues) {
+  init: function() {
+    var myForm = document.querySelector('form');
+    myForm.onsubmit = this.addValuesToDetails;
+  },
+
+  buildColorDiv: function(color) {
+    return '<div style="height: 100px; width: 100px; background-color: ' + color + '"></div>';
+  },
+
+  buildList: function(listValues) {
     var dl = document.createElement('dl');
     dl.style.border = '1px solid red';
-    dl.innerHTML = buildListItem('First Name', listValues.firstName) +
-      buildListItem('HairColor', listValues.hairColor) +
-      buildListItem('Age', listValues.age) +
-      buildListItem('Birthplace', listValues.birthplace);
+    dl.innerHTML = this.buildListItem('First Name', listValues.firstName) +
+      this.buildListItem('HairColor', listValues.hairColor) +
+      this.buildListItem('Age', listValues.age) +
+      this.buildListItem('Birthplace', listValues.birthplace);
 
     return dl;
-  };
+  },
 
-  var buildListItem = function(term, definition) {
+  buildListItem: function(term, definition) {
     var li = ' \
       <li> \
         <dt>' + term + '</dt> \
         <dd>' + definition + '</dd> \
       </li>';
     return li;
-  };
+  },
 
-  var addValuesToDetails = function(ev) {
+  addValuesToDetails: function(ev) {
     ev.preventDefault();
     var details = document.querySelector('div.details');
     var hairColor = this.hairColor.value;
@@ -34,12 +40,11 @@ $(document).foundation();
       firstName: this.firstName.value,
       age: this.age.value,
       birthplace: this.birthplace.value,
-      hairColor: buildColorDiv(hairColor)
+      hairColor: app.buildColorDiv(hairColor)
     };
 
-    details.appendChild(buildList(listValues));
-  };
+    details.appendChild(app.buildList(listValues));
+  }
+};
 
-  var myForm = document.querySelector('form');
-  myForm.onsubmit = addValuesToDetails;
-})();
+app.init();
