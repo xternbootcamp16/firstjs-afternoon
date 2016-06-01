@@ -1,7 +1,10 @@
 $(document).foundation()
 
-var myForm = document.querySelector('form');
-myForm.onsubmit = function(ev) {
+function addValuesToDetails() {
+  this
+}
+
+var addValuesToDetails = function(ev) {
   ev.preventDefault();
   var details = document.querySelector('div.details');
 
@@ -28,3 +31,6 @@ myForm.onsubmit = function(ev) {
         \
     </dl>';
 };
+
+var myForm = document.querySelector('form');
+myForm.onsubmit = addValuesToDetails;
