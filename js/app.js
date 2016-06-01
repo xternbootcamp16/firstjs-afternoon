@@ -4,6 +4,10 @@ function addValuesToDetails() {
   this
 }
 
+var buildColorDiv = function(color) {
+  return '<div style="height: 100px; width: 100px; background-color: ' + color + '"></div>';
+};
+
 var addValuesToDetails = function(ev) {
   ev.preventDefault();
   var details = document.querySelector('div.details');
@@ -13,7 +17,7 @@ var addValuesToDetails = function(ev) {
   var age = this.age.value;
   var birthplace = this.birthplace.value;
 
-  var colorDiv = '<div style="height: 100px; width: 100px; background-color: ' + hairColor + '"></div>';
+  var colorDiv = buildColorDiv(hairColor);
 
   details.innerHTML += ' \
     <dl> \
